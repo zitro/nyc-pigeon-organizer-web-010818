@@ -58,7 +58,7 @@ def nyc_pigeon_organizer(data)
     end
 
     array = false
-    organized.keys.each do |pigeon, traits|
+    organized.keys.each do |pigeon|
       if organized[pigeon][trait].is_a?(Array)
         array = true
       end
