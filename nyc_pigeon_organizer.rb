@@ -1,24 +1,24 @@
 # Write your code here!
 
-def nyc_pigeon_organizer(data)
-  organized = {}
+# def nyc_pigeon_organizer(data)
+#   organized = {}
 
-  data.each do |trait, options|
-    options.each do |option, pigeons|
-      pigeons.each do |pigeon|
-        organized[pigeon] ||= {}
-        if trait == :gender || trait == :lives
-          organized[pigeon][trait] = option.to_s
-        else
-          organized[pigeon][trait] ||= []
-          organized[pigeon][trait] << option.to_s
-        end
-      end
-    end
-  end
+#   data.each do |trait, options|
+#     options.each do |option, pigeons|
+#       pigeons.each do |pigeon|
+#         organized[pigeon] ||= {}
+#         if trait == :gender || trait == :lives
+#           organized[pigeon][trait] = option.to_s
+#         else
+#           organized[pigeon][trait] ||= []
+#           organized[pigeon][trait] << option.to_s
+#         end
+#       end
+#     end
+#   end
 
-  organized
-end
+#   organized
+# end
 
 # SUPER UNREADABLE, BUT KIND OF COOL ANSWER USING INJECT
 
@@ -39,27 +39,40 @@ end
 #   end
 # end
 
-# THIS WORKS BUT DOESN'T PASS THE TESTS, AS IT DOESN'T KEEP THE DATA IN THE
-# SAME STRUCTURE AT THE SAME LEVEL FOR ALL OPTIONS. I.E., COLOR ISN'T STORED
-# AS AN ARRAY IF THERE IS ONLY ONE COLOR. THIS IS BAD. IT'S JUST AN EXAMPLE
-# THAT DOESN'T HARD CODE ANYTHING.
+# THIS WORKS BUT IS STUPID COMPLEX
 
-# def nyc_pigeon_organizer(data)
-#   organized = {}
+def nyc_pigeon_organizer(data)
+  organized = {}
 
-#   data.each do |trait, options|
-#     options.each do |option, pigeons|
-#       pigeons.each do |pigeon|
-#         organized[pigeon] ||= {}
-#         organized[pigeon][trait] ||= ''
-#         if organized[pigeon][trait].size > 0
-#           organized[pigeon][trait] = organized[pigeon][trait].split << option.to_s
-#         else
-#           organized[pigeon][trait] = option.to_s
-#         end
-#       end
-#     end
-#   end
+  data.each do |trait, options|
+    options.each do |option, pigeons|
+      pigeons.each do |pigeon|
+        organized[pigeon] ||= {}
+        organized[pigeon][trait] ||= ''
+        if organized[pigeon][trait].size > 0
+          organized[pigeon][trait] = (organized[pigeon][trait].split << option.to_s).flatten
+        else
+          organized[pigeon][trait] = option.to_s
+        end
+      end
+    end
 
-#   organized
-# end
+    array = false
+    organized.keys.each do |pigeon, traits|
+      if organized[pigeon][trait].is_a?(Array)
+        array = true
+      end
+    end
+
+    if array
+      organized.each do |pigeon, traits|
+        if !organized[pigeon][trait].is_a?(Array)
+          organized[pigeon][trait] = [organized[pigeon][trait]]
+        end
+      end
+    end
+
+  end
+
+  organized
+end
