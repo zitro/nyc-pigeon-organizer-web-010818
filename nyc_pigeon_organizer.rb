@@ -1,5 +1,3 @@
-# Write your code here!
-
 def nyc_pigeon_organizer(data)
   organized = {}
 
