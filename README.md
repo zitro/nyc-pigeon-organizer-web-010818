@@ -1,12 +1,10 @@
----
-tags: hashes, iteration, data structures, sorting
-languages: ruby
-resources: 1
----
 
 ## NYC Pigeon Organizer
 
-### Skills: Hashes, Iteration, Sorting
+## Objectives
+
+1. Understand Hashes and Nesting
+2. Work on Sorting Hashes and manipulating nested data structures.
 
 ## Instructions
 
@@ -77,6 +75,3 @@ pigeon_list = {
 }
 ```
 
-## Resources
-
-* [Programming Ruby 1.9](http://books.flatironschool.com/books/11) - [8.1 The Method each](http://books.flatironschool.com/books/11), page 65
