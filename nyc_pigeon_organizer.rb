@@ -7,9 +7,9 @@ def nyc_pigeon_organizer(data)
         pigeons.each do |pigeon|
           redonePigeonHash[pigeon] ||= {}
           redonePigeonHash[pigeon][trait] ||= []
-          oredonePigeonHash[pigeon][trait] << option.to_s
+          redonePigeonHash[pigeon][trait] << option.to_s
         end
       end
     end
-    organized
+    redonePigeonHash
   end
